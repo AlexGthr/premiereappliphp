@@ -1,6 +1,12 @@
 <?php 
 session_start();
 
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+
+$index = $_GET['id'];
+
+}
+
 if(isset($_GET['action'])) {
 
     switch($_GET['action']){
@@ -33,8 +39,6 @@ if(isset($_GET['action'])) {
             break;
         
         case "del": 
-            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                    $index = $_GET['id'];
                 
                     // Vérifie si l'index est valide
                     if (isset($_SESSION['products'][$index])) {
@@ -49,7 +53,6 @@ if(isset($_GET['action'])) {
                         $error = true;
                         $_SESSION['error'] = $error;
                     }
-            }
 
         case "clear":
 
@@ -60,8 +63,27 @@ if(isset($_GET['action'])) {
 
             header("Location:recap.php");
             break;
-        
+     
+        case "down-qtt":
+            $_SESSION['products'][$index]['qtt'] -= 1;
+            $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'] ;
+
+            if ($_SESSION['products'][$index]['qtt'] <= 0) {
+                unset($_SESSION['products'][$index]);
+            }
+
+            header("Location:recap.php");
+            break;
+
+        case "up-qtt":
+            $_SESSION['products'][$index]['qtt'] += 1;
+            $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'];
+
+            header("Location:recap.php");
+            break;
     }
+
+
 
 
 }
