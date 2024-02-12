@@ -37,22 +37,23 @@ if(isset($_GET['action'])) {
         
                 $error = false;
         
+                $uniqueName = uniqid('', true);
+                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+                $file = $uniqueName.".".$extension;
+
                 $product = [
                     "name" => $name,
                     "price" => $price,
                     "qtt" => $qtt,
                     "total" => $price*$qtt,
+                    "image" => $file
                 ];
 
-                $uniqueName = uniqid('', true);
-                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
-                $file = $uniqueName.".".$extension;
         
                 //$file = 5f586bf96dcd38.73540086.jpg
                 move_uploaded_file($tmpName, './upload/'.$file);
 
                 $_SESSION['products'][] = $product;
-                $_SESSION['image'][] = $file;
                 $_SESSION['error'] = $error;
         
             } else if (isset($_POST['submit'])){
@@ -69,12 +70,11 @@ if(isset($_GET['action'])) {
                 
                     // Vérifie si l'index est valide
                     if (isset($_SESSION['products'][$index])) {
-                        unset($_SESSION['products'][$index]);
 
-                        $unlinkImg = "upload/" . $_SESSION['image'][$index] . "";
+                        $unlinkImg = "upload/" . $_SESSION['products'][$index]['image'] . "";
                         unlink($unlinkImg);
 
-                        unset($_SESSION['image'][$index]);
+                        unset($_SESSION['products'][$index]);
 
                         $error = false;
                         $_SESSION['error'] = $error;
@@ -88,15 +88,14 @@ if(isset($_GET['action'])) {
 
         case "clear":
 
-            unset($_SESSION['products']);
-
-            foreach($_SESSION['image'] as $index) {
-                $unlinkImg = "upload/" .$index . "";
+            foreach($_SESSION['products'] as $product) {
+                $unlinkImg = "upload/" . $product['image'] . "";
                 unlink($unlinkImg);
 
             }
             
-            unset($_SESSION['image']);
+            unset($_SESSION['products']);
+
 
             $error = false;
             $_SESSION['error'] = $error;

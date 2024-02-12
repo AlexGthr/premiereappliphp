@@ -32,7 +32,7 @@
                     echo "<tr>",
                             "<td score='row'>" .  $index+1 . "</td>",
 
-                            "<td><img src='upload/" . $_SESSION['image'][$index] . "'class='img-thumbnail'></td>",
+                            "<td><img src='upload/" . $product['image'] . "'class='img-thumbnail'></td>",
 
                             "<td>" . number_format($product['price'], 2, ",", "&nbsp;"). "&nbsp;€</td>",
 
