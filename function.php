@@ -1,51 +1,5 @@
 <?php 
 
-function addProduct() { // Message succès/erreur page Ajouter un produit
-
-    $result = "";
-
-    if (!isset($_SESSION['error'])) { // Si la session n'existe pas ou est null
-        $result = "";
-    }
-    
-    else if(!$_SESSION['error']) { // Si elle est false, alors tout va bien
-            unset($_SESSION['error']);
-            $result = "<div class='alert alert-success' role='alert'>
-                   Votre produit à bien été enrengistré !
-                  </div>";
-    } else if ($_SESSION['error']) { // Sinon...
-            unset($_SESSION['error']);
-            $result = "<div class='alert alert-danger' role='alert'>
-                    Erreur. Votre produit n'as pas été enrengistré !
-                  </div>";
-    }
-      
-    return $result;
-}
-
-function deleteProduct() { // Message succès/erreur page Panier
-
-    $result = "";
-
-    if (!isset($_SESSION['error'])) {  // Si la session n'existe pas ou est null
-        $result = "";
-    }
-    
-    else if(!$_SESSION['error']) { // Si elle est false, alors tout va bien
-            unset($_SESSION['error']);
-            $result = "<div class='alert alert-success' role='alert'>
-                   Votre produit à bien été supprimé !
-                  </div>";
-    } else if ($_SESSION['error']) { // Sinon...
-            unset($_SESSION['error']);
-            $result = "<div class='alert alert-danger' role='alert'>
-                    Erreur. Votre produit n'as pas été supprimé !
-                  </div>";
-    }
-      
-    return $result;
-}
-
 function pastillePanier() { // Function pastille panier
     $totalProduct = 0;
 

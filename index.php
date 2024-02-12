@@ -53,7 +53,6 @@
                 </p>
             </form>
 
-            <?php echo addProduct() ?> <!-- Function pour afficher message succès/erreur quand on ajoutent un produit -->
         </div>
 
         <?php

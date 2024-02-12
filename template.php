@@ -32,8 +32,34 @@
 
         </nav>
 
-    <?= $content ?>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Vous êtes sur le point de vider votre panier,<br> voulez-vous continuer ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a href='traitement.php?action=clear'><button type="button" class="btn btn-primary">Continuer</button></a>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+    <?= $content ?>
+    
+    <?php
+        if (isset($_SESSION['error'] )){
+            echo $_SESSION['error'] ;
+            unset($_SESSION['error'] );
+        }
+    ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> <!-- BOOTSTRAP <3 -->
 
