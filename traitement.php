@@ -71,6 +71,11 @@ if(isset($_GET['action'])) {
                     if (isset($_SESSION['products'][$index])) {
                         unset($_SESSION['products'][$index]);
 
+                        $unlinkImg = "upload/" . $_SESSION['image'][$index] . "";
+                        unlink($unlinkImg);
+
+                        unset($_SESSION['image'][$index]);
+
                         $error = false;
                         $_SESSION['error'] = $error;
 
@@ -84,6 +89,14 @@ if(isset($_GET['action'])) {
         case "clear":
 
             unset($_SESSION['products']);
+
+            foreach($_SESSION['image'] as $index) {
+                $unlinkImg = "upload/" .$index . "";
+                unlink($unlinkImg);
+
+            }
+            
+            unset($_SESSION['image']);
 
             $error = false;
             $_SESSION['error'] = $error;
