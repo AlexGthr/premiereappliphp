@@ -3,7 +3,7 @@
 Require :
 
 Visual studio code : https://code.visualstudio.com/download <br>
-Laragon : https://laragon.org/download/index.html
+Laragon : https://laragon.org/download/index.html <br>
 BootStrap : https://getbootstrap.com/
 
 *****
@@ -23,7 +23,9 @@ Installation de bootStrap : https://getbootstrap.com/docs/5.3/getting-started/do
 
 ![appliphpun](https://github.com/AlexGthr/premiereappliphp/assets/145430486/cbf4eed8-dbd6-4150-87d3-87240ccb3b5c)
 
-![appliphpdeux](https://github.com/AlexGthr/premiereappliphp/assets/145430486/575a8d2b-0bbc-41ec-9e47-eb05a8ad91ef)
+![panier1](https://github.com/AlexGthr/premiereappliphp/assets/145430486/1d632722-ebba-4631-939b-057efdb8d90d)
+
+![panier2](https://github.com/AlexGthr/premiereappliphp/assets/145430486/4425d53c-5761-497d-801d-68eabc599705)
 
 <br><br><br>
 <p><strong>Copyright : </strong></p>
