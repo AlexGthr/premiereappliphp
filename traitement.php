@@ -10,13 +10,30 @@ $index = $_GET['id'];
 if(isset($_GET['action'])) {
 
     switch($_GET['action']){
+
         case "add":
+
+            if (isset($_FILES)) {
+
             $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
             $name = ucfirst($name);
             $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+
+            $tmpName = $_FILES['file']['tmp_name'];
+            $nameImg = $_FILES['file']['name'];
+            $size = $_FILES['file']['size'];
+            $erreur = $_FILES['file']['error'];
+
+            $tabExtension = explode('.', $nameImg);
+            $extension = strtolower(end($tabExtension));
+
+            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+
+            $maxSize = 400000;
+
         
-            if($name && $price && $qtt) {
+            if($name && $price && $qtt && in_array($extension, $extensions) && $size <= $maxSize) {
         
                 $error = false;
         
@@ -26,8 +43,16 @@ if(isset($_GET['action'])) {
                     "qtt" => $qtt,
                     "total" => $price*$qtt,
                 ];
+
+                $uniqueName = uniqid('', true);
+                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+                $file = $uniqueName.".".$extension;
         
+                //$file = 5f586bf96dcd38.73540086.jpg
+                move_uploaded_file($tmpName, './upload/'.$file);
+
                 $_SESSION['products'][] = $product;
+                $_SESSION['image'][] = $file;
                 $_SESSION['error'] = $error;
         
             } else if (isset($_POST['submit'])){
@@ -37,6 +62,8 @@ if(isset($_GET['action'])) {
 
             header("Location:index.php");
             break;
+
+            }
         
         case "del": 
                 
