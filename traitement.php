@@ -33,7 +33,7 @@ if(isset($_GET['action'])) { // Si je recois une action depuis l'url
             $extension = strtolower(end($tabExtension));
 
             // Et j'ajoute un tableau des extensions que j'accepte
-            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+            $extensions = ['jpg', 'png', 'jpeg', 'gif', 'jfif'];
             // Ainsi qu'un poids max de l'image
             $maxSize = 400000;
 
